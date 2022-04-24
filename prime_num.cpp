@@ -2,6 +2,24 @@
 #include <iostream>
 using namespace std;
 
+int *compute_first_n_primes(int n);
+
+int main(int argc, char* argv[]) {
+
+    if (argc != 2) {
+        cout << "wrong number of arguments !\n";
+        return 1;
+    }
+    // convert array of char to int
+    int n = atoi(argv[1]);
+    assert(n > 0);
+    int *prime_nums = compute_first_n_primes(n);
+
+    for (int i = 0; i < n; i++) {
+        printf("%3d  %4d\n", i, prime_nums[i]);
+    }
+}
+
 int *compute_first_n_primes(int n) {
     int *primeNums;
     int foundNums = 1;
@@ -32,13 +50,4 @@ int *compute_first_n_primes(int n) {
     return primeNums;
 }
 
-int main(int argc, char* argv[]) {
-
-    int n = atoi(argv[1]);
-    int *prime_nums = compute_first_n_primes(n);
-
-    for (int i = 0; i < n; i++) {
-        printf("%3d  %4d\n", i, prime_nums[i]);
-    }
-}
 
