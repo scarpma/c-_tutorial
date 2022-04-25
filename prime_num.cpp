@@ -1,5 +1,6 @@
 #include <string.h>
 #include <iostream>
+#include <assert.h>
 using namespace std;
 
 // declare header in order to let main know
