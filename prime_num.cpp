@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+// declare header in order to let main know
+// what functions will come next
 int *compute_first_n_primes(int n);
 
 int main(int argc, char* argv[]) {
@@ -18,6 +20,8 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < n; i++) {
         printf("%3d  %4d\n", i, prime_nums[i]);
     }
+
+    delete[] prime_nums;
 }
 
 int *compute_first_n_primes(int n) {
