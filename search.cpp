@@ -6,30 +6,34 @@ using namespace std;
 
 long get_time_since_epoch()
 {
-    long time = (long)chrono::high_resolution_clock::now().time_since_epoch().count();
+    unsigned time = chrono::high_resolution_clock::now().time_since_epoch().count();
     return time;
 }
 
 class rand_uniform
 {
     public:
+
         rand_uniform(int bottom_lim, int top_lim)
         {
-            std::random_device rd;  //Will be used to obtain a seed for the random number engine
-            std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-            std::uniform_int_distribution<int> distrib(0, 9);
+            random_device rd;  //Will be used to obtain a seed for the random number engine
+            mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+            uniform_int_distribution<int> distrib(0, 9);
         }
+
+        //~rand_uniform(); // destructor
+
         int generate()
         {
-            distrib(gen);
+            return distrib(gen);
         }
 
 };
 
 int main()
 {
-    rand_uniform generator(0, 9);
-    cout << generator.generate() << "\n";
+    rand_uniform test(10,12);
+    cout << test.generate() << endl;
 }
 
 

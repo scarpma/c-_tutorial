@@ -17,9 +17,9 @@ int main()
     int a = rand();
 
     // random int according to distribution
-    std::random_device rd;  //Will be used to obtain a seed for the random number engine
-    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-    std::uniform_int_distribution<int> distrib(0, 9);
+    random_device rd;  //Will be used to obtain a seed for the random number engine
+    mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    uniform_int_distribution<int> distrib(0, 9);
     int b = distrib(gen);
     cout << a << "\n";
     cout << b << "\n";
