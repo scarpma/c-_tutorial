@@ -14,10 +14,19 @@ int argmin(int *a, int size)
     return minidx;
 }
 
+void print_all(const int *a, const int size)
+{
+    for (int i=0;i<size;i++)
+    {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+
 void merge(int *a, int left, int center, int right)
 {
     // create copies of the two sub arrays
-    int Nl = center - left + 1;
+    int Nl = center - left + 1; // copies from left to center (included)
     int Nr = right - center;
     int al[Nl], ar[Nr];
     for (int i=0;i<Nl;i++)
@@ -37,10 +46,9 @@ void merge(int *a, int left, int center, int right)
     ir = 0;
     i_cur = left;
 
-    while (il < Nl && ir < Nr)
+    while (il < Nl && ir < Nr) {
     // until one of the two have finished its elements
-    {
-        if (al[il] < ar[ir])
+        if (al[il] <= ar[ir]) ///////////////////////////////////////////////////////
         {
             a[i_cur] = al[il];
             il++;
@@ -71,20 +79,11 @@ void mergeSort(int* a, int left, int right)
     if (left < right) {
         int center;
         center = (left + right)/2;
-        mergeSort(a, left, center);
-        mergeSort(a, center+1,right);
+        mergeSort(a, left, center);  // sorts from left to center (included)
+        mergeSort(a, center+1, right);
         merge(a, left, center, right);
     }
     return;
-}
-
-void print_all(const int *a, const int size)
-{
-    for (int i=0;i<size;i++)
-    {
-        cout << a[i] << " ";
-    }
-    cout << endl;
 }
 
 void selection_sort(int * dS, int size)
@@ -105,6 +104,7 @@ int main(void)
 {
     int T,N;
     cin >> T;
+    //cout << "T: " << T << endl;
     
     for (int ii=1;ii<T+1;ii++)
     {
@@ -118,14 +118,11 @@ int main(void)
         }
         //selection_sort(dS, N);
         
-        print_all(dS, N);
-        mergeSort(dS, 0, N);
-        print_all(dS, N);
-        //cout << "ordered dS: " << endl;
-        //for (int jj=0;jj<N;jj++)
-        //{
-        //    cout << dS[jj] << endl;
-        //}
+        //cout << "dS unordered: ";
+        //print_all(dS, N);
+        mergeSort(dS, 0, N-1);
+        //cout << "dS ordered: ";
+        //print_all(dS, N);
 
         int useless_dices = 0;
         for (int k=1;k<=N;k++)
