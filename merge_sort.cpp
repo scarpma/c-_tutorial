@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+
 
 using namespace std;
 
@@ -14,7 +16,7 @@ void print_all(const int *a, const int size)
 void merge(int *a, int left, int center, int right)
 {
     // create copies of the two sub arrays
-    int Nl = center - left + 1;
+    int Nl = center - left + 1; // copies from left to center (included)
     int Nr = right - center;
     int al[Nl], ar[Nr];
     for (int i=0;i<Nl;i++)
@@ -34,10 +36,9 @@ void merge(int *a, int left, int center, int right)
     ir = 0;
     i_cur = left;
 
-    while (il < Nl && ir < Nr)
+    while (il < Nl && ir < Nr) {
     // until one of the two have finished its elements
-    {
-        if (al[il] < ar[ir])
+        if (al[il] <= ar[ir]) ///////////////////////////////////////////////////////
         {
             a[i_cur] = al[il];
             il++;
@@ -68,23 +69,36 @@ void mergeSort(int* a, int left, int right)
     if (left < right) {
         int center;
         center = (left + right)/2;
-        mergeSort(a, left, center);
-        mergeSort(a, center+1,right);
+        mergeSort(a, left, center);  // sorts from left to center (included)
+        mergeSort(a, center+1, right);
         merge(a, left, center, right);
     }
     return;
 }
 
 
-int main(void)
-{
+int main(void){
 
-    int a[] = {10,2,3,6,10,5,7,8,9};
-    print_all(a, 9);
-    
-    mergeSort(a, 0, 9);
+    int N;
+    int * a;
 
-    print_all(a, 9);
+    cin >> N;
+
+    a = new int [N]; // dynamic allocation of a
+    // read array from stdin
+    for (int i=0;i<N;i++) {
+        cin >> a[i];
+    }
+
+    cout << "unordered: ";
+    print_all(a, N);
+    mergeSort(a, 0, N-1);
+    cout << "ordered: ";
+    print_all(a, N);
 
     return 0;
 }
+
+
+
+
