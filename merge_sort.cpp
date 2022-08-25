@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void print_all(const int *a, const int size)
+void printAll(const int *a, const int size)
 {
     for (int i=0;i<size;i++)
     {
@@ -91,10 +91,10 @@ int main(void){
     }
 
     cout << "unordered: ";
-    print_all(a, N);
+    printAll(a, N);
     mergeSort(a, 0, N-1);
     cout << "ordered: ";
-    print_all(a, N);
+    printAll(a, N);
 
     return 0;
 }
