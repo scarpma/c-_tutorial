@@ -1,3 +1,6 @@
+inp*
+out*
 *.out
 *.txt
 **/sol
+.DS_Store
