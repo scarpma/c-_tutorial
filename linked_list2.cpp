@@ -14,6 +14,45 @@ typedef struct List { // container for list nodes
     int len;
 }list;
 
+node *insertFirst(int number, node *list) {
+    node *newNode;
+    newNode = (node*)malloc(sizeof(node));
+    newNode->number = number;
+    newNode->next = list;
+    return newNode;
+}
+
+node *insertAtPosition(int number, node *list, int position) {
+    if (position < 0) {
+        cout << "position must be >= 0" << endl;
+        return NULL;
+    }
+
+    int i = 0;
+    node *previous;
+    previous = list;
+    
+    if (position == 0) {
+        return insertFirst(number, list);
+    }
+
+    previous = list;
+    while (i != position-1) {
+        previous = previous->next;
+        if (previous==NULL) {
+            cout << "position > len(list) - 1" << endl;
+            return NULL;
+        }
+        i++;
+    }
+    node *newNode;
+    newNode = (node*)malloc(sizeof(node));
+    newNode->number = number;
+    newNode->next = previous->next;
+    previous->next = newNode;
+    return list;
+}
+
 // print list with cycle
 void printList(node* list) {
     int len = 0;
@@ -44,6 +83,13 @@ int main(void) {
         last = tmp;
     }
 
+    printList(list);
+    list = insertFirst(10, list);
+    cout << "inserting at beginning:" << endl;
+    printList(list);
+
+    list = insertAtPosition(10000, list, 3);
+    cout << "inserting at position:" << endl;
     printList(list);
     
     List list2;
