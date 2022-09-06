@@ -1,6 +1,9 @@
-inp*
-out*
-*.out
-*.txt
-**/sol
-.DS_Store
+#inp*
+#out*
+#*.out
+#*.txt
+#**/sol
+#.DS_Store
+*
+!*.cpp
+!*.c
