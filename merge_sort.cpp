@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
 
 void printAll(const int *a, const int size)
